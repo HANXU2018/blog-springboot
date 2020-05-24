@@ -10,5 +10,6 @@ public class SpringBootWebMvcConfigurer implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         //file:///C:/Users/hx/Desktop/tomcatstudy/1.png
         registry.addResourceHandler("/files/**").addResourceLocations("file:C:/Users/hx/Desktop/tomcatstudy/");
+
     }
 }
