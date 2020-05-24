@@ -41,6 +41,6 @@ public class UploadController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "上传成功";
+        return "上传成功，图片地址为：/files/" + newFileName;
     }
 }
