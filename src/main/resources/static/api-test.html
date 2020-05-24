@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>lou.SpringBoot | 请求测试</title>
+</head>
+<body class="hold-transition login-page">
+<div style="width:720px;margin:7% auto">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="m-0">接口测试</h5>
+                        </div>
+                        <div class="card-body">
+                            <input id="id" type="text" placeholder="请输入id字段">
+                            <input id="goodsName" type="text" placeholder="请输入goodsName字段">
+                            <input id="weight" type="number" placeholder="请输入weight字段">
+                            <input id="type" type="number" placeholder="请输入type字段">
+                            <input id="onSale" type="number" placeholder="请输入onSale字段(0或1)">
+                            <h6 class="card-title">接口返回数据如下：</h6>
+                            <p class="card-text" id="result2"></p>
+                            <a href="#" class="btn btn-primary" onclick="requestPostTest()">发送Post请求</a>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="https://cdn.staticfile.org/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript">
+    function requestPostTest() {
+        var onSale = true;
+        var id = $("#id").val();
+        var weight = $("#weight").val();
+        var type = $("#type").val();
+        var goodsName = $("#goodsName").val();
+        var onSaleValue = $("#onSale").val();
+        //alert(onSaleValue);
+        if(onSaleValue !== "1"){
+            onSale = false;
+        }else{
+            onSale = true;
+        }
+        var data = {"id": id, "goodsName": goodsName, "weight":weight, "type":type, "onSale":onSale};
+        $.ajax({
+            type: "POST",  //方法类型
+            dataType: "json",  //预期服务器返回的数据类型
+            url: "/test/httpmessageconverter",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            success: function (result) {
+                $("#result2").html(JSON.stringify(result));
+            },
+            error: function () {
+                $("#result2").html("接口异常，请联系管理员！");
+            }
+        });
+    }
+</script>
+</body>
+</html>
