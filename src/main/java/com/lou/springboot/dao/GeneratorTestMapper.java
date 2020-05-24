@@ -1,9 +1,7 @@
 package com.lou.springboot.dao;
 
 import com.lou.springboot.entity.GeneratorTest;
-import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
 public interface GeneratorTestMapper {
     int deleteByPrimaryKey(Long id);
 
