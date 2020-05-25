@@ -1,8 +1,11 @@
 package com.lou.springboot.service;
 
+import com.lou.springboot.dao.AdminUserMapper;
 import com.lou.springboot.entity.AdminUser;
 import com.lou.springboot.utils.PageResult;
 import com.lou.springboot.utils.PageUtil;
+
+import javax.annotation.Resource;
 
 /**
  * @author 13
@@ -12,6 +15,33 @@ import com.lou.springboot.utils.PageUtil;
  */
 
 public interface AdminUserService {
+    /**
+     * 获取用户信息
+     *
+     * @param loginUserId
+     * @return
+     */
+    AdminUser getUserDetailById(Integer loginUserId);
+
+    /**
+     * 修改当前登录用户的密码
+     *
+     * @param loginUserId
+     * @param originalPassword
+     * @param newPassword
+     * @return
+     */
+    Boolean updatePassword(Integer loginUserId, String originalPassword, String newPassword);
+
+    /**
+     * 修改当前登录用户的名称信息
+     *
+     * @param loginUserId
+     * @param loginUserName
+     * @param nickName
+     * @return
+     */
+    Boolean updateName(Integer loginUserId, String loginUserName, String nickName);
 
     /**
      * 分页功能
