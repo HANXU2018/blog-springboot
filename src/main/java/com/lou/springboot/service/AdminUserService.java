@@ -27,4 +27,6 @@ public interface AdminUserService {
      * @return
      */
     AdminUser updateTokenAndLogin(String userName, String password);
+
+    AdminUser login(String userName, String password);
 }

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="admin/header::header-fragment"></header>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- 引入页面头header-fragment -->
+    <div th:replace="admin/header::header-nav"></div>
+    <aside th:fragment="sidebar-fragment(path)" class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a th:href="@{/admin/index}" class="brand-link">
+            <img th:src="@{/admin/dist/img/logo.png}" alt="ssm-cluster Logo" class="brand-image img-circle elevation-3"
+                 style="opacity: .8">
+            <span class="brand-text font-weight-light">my blog</span>
+        </a>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img th:src="@{/admin/dist/img/avatar5.png}" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block" th:text="${session.loginUser}"></a>
+                </div>
+            </div>
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-header">首页</li>
+                    <li class="nav-item">
+                        <a th:href="@{/admin/index}" class="nav-link active">
+                            <i class="nav-icon fa fa-dashboard"></i>
+                            <p>
+                                首页
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-header">系统管理</li>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card-header">
+                    <h3 class="card-title">管理首页</h3>
+                </div> <!-- /.card-body -->
+                <div class="row" style="margin-top: 40px;border-top:0px;">
+                    My Blog 后台管理系统首页
+                </div>
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <!-- 引入页脚footer-fragment -->
+    <div th:replace="admin/footer::footer-fragment"></div>
+</div>
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script th:src="@{/admin/plugins/jQueryUI/jquery-ui.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+</body>
+</html>
