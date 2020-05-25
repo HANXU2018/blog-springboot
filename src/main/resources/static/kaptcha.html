@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证码测试</title>
+</head>
+<body>
+<img src="/kaptcha"
+     onclick="this.src='/kaptcha?d='+new Date()*1">
+<input type="text" maxlength="5" id="code" placeholder="请输入验证码">
+<button id="verify">验证</button>
+</body>
+<script src="./plugins/jquery/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#verify").click(function () {
+            alert("dianji");
+            console.log("被点击");
+            var code = $("#code").val();
+            $.ajax({
+                type: 'GET',//方法类型
+                url: '/verify?code=' + code,
+                success: function (result) {
+                    alert(result);
+                },
+                error: function () {
+                    alert("请求失败");
+                }
+            });
+        })
+    });
+</script>
+</html>
