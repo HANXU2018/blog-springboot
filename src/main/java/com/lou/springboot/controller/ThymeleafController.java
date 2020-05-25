@@ -56,4 +56,9 @@ public class ThymeleafController {
         map.put("testDate", new Date());
         return "test";
     }
+    @GetMapping({"/admin"})
+    public String login() {
+        return "admin";
+    }
+
 }
