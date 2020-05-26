@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="admin/header::header-fragment"></header>
+<body class="hold-transition sidebar-mini">
+<link th:href="@{/admin/plugins/editormd/css/editormd.css}" rel="stylesheet"/>
+<div class="wrapper">
+    <!-- 引入页面头header-fragment -->
+    <div th:replace="admin/header::header-nav"></div>
+    <!-- 引入工具栏sidebar-fragment -->
+    <div th:replace="admin/sidebar::sidebar-fragment(${path})"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">发布文章</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="blogForm" onsubmit="return false;">
+                            <div class="form-group" id="blog-editormd">
+                                <textarea style="display:none;"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <!-- 按钮 -->
+                                &nbsp;<button class="btn btn-info float-right" style="margin-left: 5px;"
+                                              id="confirmButton">保存文章
+                            </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div><!-- /.container-fluid -->
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+    <!-- 引入页脚footer-fragment -->
+    <div th:replace="admin/footer::footer-fragment"></div>
+</div>
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script th:src="@{/admin/plugins/jQueryUI/jquery-ui.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+<!-- editor.md -->
+<script th:src="@{/admin/plugins/editormd/editormd.min.js}"></script>
+<script th:src="@{/admin/dist/js/public.js}"></script>
+<script type="text/javascript">
+    var blogEditor;
+    $(function () {
+        blogEditor = editormd("blog-editormd", {
+            width: "100%",
+            height: 640,
+            syncScrolling: "single",
+            path: "/admin/plugins/editormd/lib/",
+            toolbarModes: 'full',
+            /**图片上传配置*/
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"], //图片上传格式
+            imageUploadURL: "/admin/blogs/md/uploadfile",
+            onload: function (obj) { //上传成功之后的回调
+            }
+        });
+
+    });
+    $('#confirmButton').bind('click', function(){
+        console.log(blogEditor.getMarkdown());
+        alert(blogEditor.getMarkdown());
+    });
+</script>
+</body>
+</html>
