@@ -27,4 +27,6 @@ public interface BlogTagMapper {
     int getTotalTags(PageQueryUtil pageUtil);
 
     int deleteBatch(Integer[] ids);
+
+    int batchInsertBlogTag(List<BlogTag> tagList);
 }

@@ -114,4 +114,12 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where tag_id = #{tagId,jdbcType=INTEGER}
   </update>
+    <insert id="batchInsertBlogTag" parameterType="java.util.List" useGeneratedKeys="true"
+            keyProperty="tagId">
+        INSERT into tb_blog_tag(tag_name)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.tagName,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
 </mapper>
