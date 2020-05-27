@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="blog/header::head-fragment"></head>
+<body>
+<header th:replace="blog/header::header-fragment"></header>
+<div class="widewrapper main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 blog-main">
+                <div class="col-md-6 col-sm-6 blog-main-card ">
+                    <article class=" blog-summary">
+                        <header>
+                            <img th:src="@{/blog/img/photo1.png}" alt="">
+                            <h3><a href="##">第14课：SweetAlert 插件整合及搜索功能实现</a></h3>
+                        </header>
+
+                    </article>
+                </div>
+                <div class="col-md-6 col-sm-6 blog-main-card ">
+                    <article class="blog-summary">
+                        <header>
+                            <img th:src="@{/blog/img/photo2.png}" alt="">
+                            <h3><a href="##">第13课：富文本信息管理模块</a></h3>
+                        </header>
+
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-sm-6 blog-main-card ">
+                    <article class="blog-summary">
+                        <header>
+                            <img th:src="@{/blog/img/photo1.png}" alt="">
+                            <h3><a href="##">第12课：文件导入导出功能</a></h3>
+                        </header>
+
+                    </article>
+                </div>
+                <div class="col-md-6 col-sm-6 blog-main-card ">
+                    <article class="blog-summary">
+                        <header>
+                            <img th:src="@{/blog/img/photo1.png}" alt="">
+                            <h3><a href="##">第11课：多图上传与大文件分片上传、断点续传</a></h3>
+                        </header>
+
+                    </article>
+                </div>
+                <div class="col-md-6 col-sm-6 blog-main-card ">
+                    <article class="blog-summary">
+                        <header>
+                            <img th:src="@{/blog/img/photo1.png}" alt="">
+                            <h3><a href="##">第10课：图片管理模块</a></h3>
+                        </header>
+
+                    </article>
+                </div>
+                <div class="col-md-6 col-sm-6 blog-main-card ">
+                    <article class=" blog-summary">
+                        <header>
+                            <img th:src="@{/blog/img/photo2.png}" alt="">
+                            <h3><a href="##">第09课：弹框组件整合——完善添加和修改功能</a></h3>
+                        </header>
+
+                    </article>
+                </div>
+
+                <div class="col-md-6 col-sm-6 blog-main-card ">
+                    <article class="blog-summary">
+                        <header>
+                            <img th:src="@{/blog/img/photo1.png}" alt="">
+                            <h3><a href="##">第09课：弹框组件整合——完善添加和修改功能</a></h3>
+                        </header>
+
+                    </article>
+                </div>
+                <div class="col-md-6 col-sm-6 blog-main-card ">
+                    <article class=" blog-summary">
+                        <header>
+                            <img th:src="@{/blog/img/photo1.png}" alt="">
+                            <h3><a href="##">第09课：弹框组件整合——完善添加和修改功能</a></h3>
+                        </header>
+
+                    </article>
+                </div>
+                <ul class="blog-pagination">
+                    <li><a href="#">&laquo;</a></li>
+                    <li class="active"><a href="#"> 1 </a></li>
+                    <li class="disabled"><a href="#"> 2 </a></li>
+                    <li><a href="#"> 3 </a></li>
+                    <li><a href="#"> 4 </a></li>
+                    <li><a href="#"> 5 </a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
+            <aside class="col-md-4 blog-aside">
+                <div class="aside-widget">
+                    <header>
+                        <h3>点击最多</h3>
+                    </header>
+                    <div class="body">
+                        <ul class="clean-list">
+                            <li><a href="">关于personal-blog</a></li>
+                            <li><a href="">关于personal-blog</a></li>
+                            <li><a href="">关于personal-blog</a></li>
+                            <li><a href="">关于personal-blog</a></li>
+                            <li><a href="">关于personal-blog</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="aside-widget">
+                    <header>
+                        <h3>最新发布</h3>
+                    </header>
+                    <div class="body">
+                        <ul class="clean-list">
+                            <li><a href="">SpringBoot</a></li>
+                            <li><a href="">SpringBoot</a></li>
+                            <li><a href="">SpringBoot</a></li>
+                            <li><a href="">SpringBoot</a></li>
+                            <li><a href="">SpringBoot</a></li>
+                            <li><a href="">SpringBoot</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="aside-widget">
+                    <header>
+                        <h3>标签栏</h3>
+                    </header>
+                    <div class="body clearfix">
+                        <ul class="tags">
+                            <li><a href="#">HTML5</a></li>
+                            <li><a href="#">CSS3</a></li>
+                            <li><a href="#">COMPONENTS</a></li>
+                            <li><a href="#">TEMPLATE</a></li>
+                            <li><a href="#">PLUGIN</a></li>
+                            <li><a href="#">BOOTSTRAP</a></li>
+                            <li><a href="#">TUTORIAL</a></li>
+                            <li><a href="#">UI/UX</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+<!-- 引入页脚footer-fragment -->
+<footer th:replace="blog/footer::footer-fragment"></footer>
+<script th:src="@{/blog/js/jquery.min.js}"></script>
+<script th:src="@{/blog/js/bootstrap.min.js}"></script>
+<script th:src="@{/blog/js/modernizr.js}"></script>
+</body>
+</html>
