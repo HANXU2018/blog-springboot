@@ -126,7 +126,7 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where link_id = #{linkId,jdbcType=INTEGER}
   </update>
-    
+
 
     <select id="findLinkList" parameterType="Map" resultMap="BaseResultMap">
         select

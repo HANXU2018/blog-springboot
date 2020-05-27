@@ -1,8 +1,11 @@
 package com.lou.springboot.service;
 
+import com.lou.springboot.controller.vo.SimpleBlogListVO;
 import com.lou.springboot.entity.Blog;
 import com.lou.springboot.utils.PageQueryUtil;
 import com.lou.springboot.utils.PageResult;
+
+import java.util.List;
 
 public interface BlogService {
     String saveBlog(Blog blog);
@@ -25,4 +28,6 @@ public interface BlogService {
     PageResult getBlogsPage(PageQueryUtil pageUtil);
 
     Boolean deleteBatch(Integer[] ids);
+
+    public List<SimpleBlogListVO> getBlogListForIndexPage(int type);
 }

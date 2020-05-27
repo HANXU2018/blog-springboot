@@ -3,6 +3,7 @@ package com.lou.springboot.dao;
 import com.lou.springboot.entity.Blog;
 import com.lou.springboot.utils.PageQueryUtil;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -28,4 +29,5 @@ public interface BlogMapper {
 
     int deleteBatch(Integer[] ids);
 
+    List<Blog> findBlogListByType(@Param("type") int type, @Param("limit") int limit);
 }

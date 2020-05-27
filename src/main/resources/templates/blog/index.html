@@ -98,11 +98,13 @@
                     </header>
                     <div class="body">
                         <ul class="clean-list">
-                            <li><a href="">关于personal-blog</a></li>
-                            <li><a href="">关于personal-blog</a></li>
-                            <li><a href="">关于personal-blog</a></li>
-                            <li><a href="">关于personal-blog</a></li>
-                            <li><a href="">关于personal-blog</a></li>
+                            <th:block th:if="${null != hotBlogs}">
+                                <th:block th:each="hotBlog : ${hotBlogs}">
+                                    <li><a>
+                                        <th:block th:text="${hotBlog.blogTitle}"></th:block>
+                                    </a></li>
+                                </th:block>
+                            </th:block>
                         </ul>
                     </div>
                 </div>
@@ -112,15 +114,17 @@
                     </header>
                     <div class="body">
                         <ul class="clean-list">
-                            <li><a href="">SpringBoot</a></li>
-                            <li><a href="">SpringBoot</a></li>
-                            <li><a href="">SpringBoot</a></li>
-                            <li><a href="">SpringBoot</a></li>
-                            <li><a href="">SpringBoot</a></li>
-                            <li><a href="">SpringBoot</a></li>
+                            <th:block th:if="${null != newBlogs}">
+                                <th:block th:each="newBlog : ${newBlogs}">
+                                    <li><a>
+                                        <th:block th:text="${newBlog.blogTitle}"></th:block>
+                                    </a></li>
+                                </th:block>
+                            </th:block>
                         </ul>
                     </div>
                 </div>
+                
                 <div class="aside-widget">
                     <header>
                         <h3>标签栏</h3>

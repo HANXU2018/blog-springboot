@@ -1,5 +1,6 @@
 package com.lou.springboot.service.impl;
 
+import com.lou.springboot.controller.vo.SimpleBlogListVO;
 import com.lou.springboot.dao.BlogCategoryMapper;
 import com.lou.springboot.dao.BlogMapper;
 import com.lou.springboot.dao.BlogTagMapper;
@@ -11,6 +12,7 @@ import com.lou.springboot.entity.BlogTagRelation;
 import com.lou.springboot.service.BlogService;
 import com.lou.springboot.utils.PageQueryUtil;
 import com.lou.springboot.utils.PageResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -180,6 +182,26 @@ public class BlogServiceImpl implements BlogService {
             return false;
         }
         return blogMapper.deleteBatch(ids) > 0;
+    }
+
+    /**
+     * 首页侧边栏数据列表
+     * 0-点击最多 1-最新发布
+     *
+     * @param type
+     * @return
+     */
+    public List<SimpleBlogListVO> getBlogListForIndexPage(int type) {
+        List<SimpleBlogListVO> simpleBlogListVOS = new ArrayList<>();
+        List<Blog> blogs = blogMapper.findBlogListByType(type, 9);
+        if (!CollectionUtils.isEmpty(blogs)) {
+            for (Blog blog : blogs) {
+                SimpleBlogListVO simpleBlogListVO = new SimpleBlogListVO();
+                BeanUtils.copyProperties(blog, simpleBlogListVO);
+                simpleBlogListVOS.add(simpleBlogListVO);
+            }
+        }
+        return simpleBlogListVOS;
     }
 
 
