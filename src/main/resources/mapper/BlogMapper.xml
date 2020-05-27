@@ -246,23 +246,6 @@
             (#{item.blogId,jdbcType=BIGINT},#{item.tagId,jdbcType=INTEGER})
         </foreach>
     </insert>
-
-    <select id="findBlogList" parameterType="Map" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from tb_blog
-        where is_deleted=0
-        order by blog_id desc
-        <if test="start!=null and limit!=null">
-            limit #{start},#{limit}
-        </if>
-    </select>
-
-    <select id="getTotalBlogs" parameterType="Map" resultType="int">
-        select count(*) from tb_blog
-        where is_deleted=0
-    </select>
-
     <update id="deleteBatch">
         update tb_blog
         set is_deleted=1 where blog_id in
@@ -285,4 +268,26 @@
         limit #{limit}
     </select>
 
+
+    <select id="getTotalBlogs" parameterType="Map" resultType="int">
+        select count(*) from tb_blog
+        where is_deleted=0
+        <if test="blogStatus!=null">
+            AND blog_status = #{blogStatus}
+        </if>
+    </select>
+
+    <select id="findBlogList" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_blog
+        where is_deleted=0
+        <if test="blogStatus!=null">
+            AND blog_status = #{blogStatus}
+        </if>
+        order by blog_id desc
+        <if test="start!=null and limit!=null">
+            limit #{start},#{limit}
+        </if>
+    </select>
 </mapper>

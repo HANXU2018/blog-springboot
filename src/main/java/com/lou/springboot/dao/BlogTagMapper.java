@@ -1,6 +1,7 @@
 package com.lou.springboot.dao;
 
 import com.lou.springboot.entity.BlogTag;
+import com.lou.springboot.entity.BlogTagCount;
 import com.lou.springboot.utils.PageQueryUtil;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -29,4 +30,6 @@ public interface BlogTagMapper {
     int deleteBatch(Integer[] ids);
 
     int batchInsertBlogTag(List<BlogTag> tagList);
+
+    List<BlogTagCount> getTagCount();
 }

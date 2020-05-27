@@ -3,6 +3,7 @@ package com.lou.springboot.service.impl;
 import com.lou.springboot.dao.BlogTagMapper;
 import com.lou.springboot.dao.BlogTagRelationMapper;
 import com.lou.springboot.entity.BlogTag;
+import com.lou.springboot.entity.BlogTagCount;
 import com.lou.springboot.service.TagService;
 import com.lou.springboot.utils.PageQueryUtil;
 import com.lou.springboot.utils.PageResult;
@@ -47,6 +48,11 @@ public class TagServiceImpl implements TagService {
         }
         //删除tag
         return blogTagMapper.deleteBatch(ids) > 0;
+    }
+
+    @Override
+    public List<BlogTagCount> getBlogTagCountForIndex() {
+        return blogTagMapper.getTagCount();
     }
 
 }

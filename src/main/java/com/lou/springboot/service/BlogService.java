@@ -1,5 +1,6 @@
 package com.lou.springboot.service;
 
+import com.lou.springboot.controller.vo.BlogListVO;
 import com.lou.springboot.controller.vo.SimpleBlogListVO;
 import com.lou.springboot.entity.Blog;
 import com.lou.springboot.utils.PageQueryUtil;
@@ -30,4 +31,8 @@ public interface BlogService {
     Boolean deleteBatch(Integer[] ids);
 
     public List<SimpleBlogListVO> getBlogListForIndexPage(int type);
+
+    public PageResult getBlogsForIndexPage(int page);
+
+    List<BlogListVO> getBlogListVOsByBlogs(List<Blog> blogList);
 }
