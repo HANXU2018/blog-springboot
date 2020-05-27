@@ -28,16 +28,22 @@
                         <!-- 几个基础的输入框，名称、分类等输入框 -->
                         <form id="blogForm" onsubmit="return false;">
                             <div class="form-group" style="display:flex;">
+                                <input type="hidden" id="blogId" name="blogId"
+                                       th:value="${blog!=null and blog.blogId!=null }?${blog.blogId}: 0">
                                 <input type="text" class="form-control col-sm-6" id="blogName" name="blogName"
-                                       placeholder="*请输入文章标题(必填)">
+                                       placeholder="*请输入文章标题(必填)"
+                                       th:value="${blog!=null and blog.blogTitle!=null }?${blog.blogTitle}: ''"
+                                       required="true">
                                 &nbsp;&nbsp;
                                 <input type="text" class="form-control" id="blogTags" name="blogTags"
                                        placeholder="请输入文章标签"
+                                       th:value="${blog!=null and blog.blogTags!=null }?${blog.blogTags}: ''"
                                        style="width: 100%;">
                             </div>
                             <div class="form-group" style="display:flex;">
                                 <input type="text" class="form-control col-sm-6" id="blogSubUrl"
                                        name="blogSubUrl"
+                                       th:value="${blog!=null and blog.blogSubUrl!=null }?${blog.blogSubUrl}: ''"
                                        placeholder="请输入自定义路径,如:springboot-mybatis,默认为id"> &nbsp;&nbsp;
                                 <select class="form-control select2" style="width: 100%;" id="blogCategoryId"
                                         data-placeholder="请选择分类...">
@@ -46,20 +52,28 @@
                                     </th:block>
                                     <th:block th:unless="${null == categories}">
                                         <th:block th:each="c : ${categories}">
-                                            <option th:value="${c.categoryId}" th:text="${c.categoryName}">
-
+                                            <option th:value="${c.categoryId}" th:text="${c.categoryName}"
+                                                    th:selected="${null !=blog and null !=blog.blogCategoryId and blog.blogCategoryId==c.categoryId} ?true:false">
+                                                >
                                             </option>
                                         </th:block>
                                     </th:block>
                                 </select>
                             </div>
                             <div class="form-group" id="blog-editormd">
-                                <textarea style="display:none;"></textarea>
+        <textarea style="display:none;"
+                  th:utext="${blog!=null and blog.blogContent !=null}?${blog.blogContent}: ''"></textarea>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-4">
-                                    <img id="blogCoverImage" src="/admin/dist/img/img-upload.png"
-                                         style="height: 64px;width: 64px;">
+                                    <th:block th:if="${null == blog}">
+                                        <img id="blogCoverImage" src="/admin/dist/img/img-upload.png"
+                                             style="height: 64px;width: 64px;">
+                                    </th:block>
+                                    <th:block th:unless="${null == blog}">
+                                        <img id="blogCoverImage" th:src="${blog.blogCoverImage}"
+                                             style="width:160px ;height: 120px;display:block;">
+                                    </th:block>
                                 </div>
                             </div>
                             <br>
@@ -79,12 +93,16 @@
                                 <label class="control-label">文章状态:&nbsp;</label>
                                 <input name="blogStatus" type="radio" id="publish"
                                        checked=true
+                                       th:checked="${null==blog||(null !=blog and null !=blog.blogStatus and blog.blogStatus==1)} ?true:false"
                                        value="1"/>&nbsp;发布&nbsp;
-                                <input name="blogStatus" type="radio" id="draft" value="0"/>&nbsp;草稿&nbsp;&nbsp;&nbsp;
+                                <input name="blogStatus" type="radio" id="draft" value="0"
+                                       th:checked="${null !=blog and null !=blog.blogStatus and blog.blogStatus==0} ?true:false"/>&nbsp;草稿&nbsp;&nbsp;&nbsp;
                                 <label class="control-label">是否允许评论:&nbsp;</label>
                                 <input name="enableComment" type="radio" id="enableCommentTrue" checked=true
+                                       th:checked="${null==blog||(null !=blog and null !=blog.enableComment and blog.enableComment==0)} ?true:false"
                                        value="0"/>&nbsp;是&nbsp;
-                                <input name="enableComment" type="radio" id="enableCommentFalse" value="1"/>&nbsp;否&nbsp;
+                                <input name="enableComment" type="radio" id="enableCommentFalse" value="1"
+                                       th:checked="${null !=blog and null !=blog.enableComment and blog.enableComment==1} ?true:false"/>&nbsp;否&nbsp;
                             </div>
                             <div class="form-group">
                                 <!-- 按钮 -->

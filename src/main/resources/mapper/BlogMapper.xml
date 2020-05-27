@@ -247,4 +247,30 @@
         </foreach>
     </insert>
 
+    <select id="findBlogList" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_blog
+        where is_deleted=0
+        order by blog_id desc
+        <if test="start!=null and limit!=null">
+            limit #{start},#{limit}
+        </if>
+    </select>
+
+    <select id="getTotalBlogs" parameterType="Map" resultType="int">
+        select count(*) from tb_blog
+        where is_deleted=0
+    </select>
+
+    <update id="deleteBatch">
+        update tb_blog
+        set is_deleted=1 where blog_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+
+
 </mapper>
