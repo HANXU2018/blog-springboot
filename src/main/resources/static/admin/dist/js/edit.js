@@ -27,7 +27,7 @@ $(function () {
     new AjaxUpload('#uploadCoverImage', {
         action: '/admin/upload/file',
         name: 'file',
-        autoSubmit: true,
+        // autoSubmit: true,
         responseType: "json",
         onSubmit: function (file, extension) {
             if (!(extension && /^(jpg|jpeg|png|gif)$/.test(extension.toLowerCase()))) {
@@ -36,10 +36,11 @@ $(function () {
             }
         },
         onComplete: function(file, r){
+
             if (r != null && r.resultCode == 200) {
+                alert("success");
                 $("#blogCoverImage").attr("src", r.data);
                 $("#blogCoverImage").attr("style", "width: 128px;height: 128px;display:block;");
-                return false;
             } else {
                 alert("error");
             }
