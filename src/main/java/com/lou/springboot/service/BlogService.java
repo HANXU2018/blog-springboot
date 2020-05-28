@@ -35,4 +35,10 @@ public interface BlogService {
     public PageResult getBlogsForIndexPage(int page);
 
     List<BlogListVO> getBlogListVOsByBlogs(List<Blog> blogList);
+
+    PageResult getBlogsPageBySearch(String keyword, int page);
+
+    public PageResult getBlogsPageByCategory(String categoryName, int page);
+
+    PageResult getBlogsPageByTag(String tagName, Integer page);
 }

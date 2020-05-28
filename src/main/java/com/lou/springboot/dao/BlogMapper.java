@@ -2,12 +2,14 @@ package com.lou.springboot.dao;
 
 import com.lou.springboot.entity.Blog;
 import com.lou.springboot.utils.PageQueryUtil;
+import com.lou.springboot.utils.PageResult;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Mapper
+@Component
 public interface BlogMapper {
     int deleteByPrimaryKey(Long blogId);
 
@@ -30,4 +32,10 @@ public interface BlogMapper {
     int deleteBatch(Integer[] ids);
 
     List<Blog> findBlogListByType(@Param("type") int type, @Param("limit") int limit);
+
+    public PageResult getBlogsPageByTag(String tagName, int page);
+
+    List<Blog> getBlogsPageByTagId(PageQueryUtil pageUtil);
+
+    int getTotalBlogsByTagId(PageQueryUtil pageUtil);
 }

@@ -1,7 +1,9 @@
 package com.lou.springboot.dao;
 
 import com.lou.springboot.entity.GeneratorTest;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface GeneratorTestMapper {
     int deleteByPrimaryKey(Long id);
 

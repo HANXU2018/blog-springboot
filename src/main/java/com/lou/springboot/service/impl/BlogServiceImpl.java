@@ -13,6 +13,7 @@ import com.lou.springboot.entity.BlogTagRelation;
 import com.lou.springboot.service.BlogService;
 import com.lou.springboot.utils.PageQueryUtil;
 import com.lou.springboot.utils.PageResult;
+import com.lou.springboot.utils.PatternUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -258,5 +259,71 @@ public class BlogServiceImpl implements BlogService {
         return blogListVOS;
     }
 
+    /**
+     * 根据搜索关键字获取首页文章列表
+     *
+     * @param page
+     * @return
+     */
+    public PageResult getBlogsPageBySearch(String keyword, int page) {
+        if (page > 0 && PatternUtil.validKeyword(keyword)) {
+            Map param = new HashMap();
+            param.put("page", page);
+            param.put("limit", 9);
+            param.put("keyword", keyword);
+            param.put("blogStatus", 1);//过滤发布状态下的数据
+            PageQueryUtil pageUtil = new PageQueryUtil(param);
+            List<Blog> blogList = blogMapper.findBlogList(pageUtil);
+            List<BlogListVO> blogListVOS = getBlogListVOsByBlogs(blogList);
+            int total = blogMapper.getTotalBlogs(pageUtil);
+            PageResult pageResult = new PageResult(blogListVOS, total, pageUtil.getLimit(), pageUtil.getPage());
+            return pageResult;
+        }
+        return null;
+    }
+
+    public PageResult getBlogsPageByCategory(String categoryName, int page) {
+        if (PatternUtil.validKeyword(categoryName)) {
+            BlogCategory blogCategory = categoryMapper.selectByCategoryName(categoryName);
+            if ("默认分类".equals(categoryName) && blogCategory == null) {
+                blogCategory = new BlogCategory();
+                blogCategory.setCategoryId(0);
+            }
+            if (blogCategory != null && page > 0) {
+                Map param = new HashMap();
+                param.put("page", page);
+                param.put("limit", 9);
+                param.put("blogCategoryId", blogCategory.getCategoryId());
+                param.put("blogStatus", 1);//过滤发布状态下的数据
+                PageQueryUtil pageUtil = new PageQueryUtil(param);
+                List<Blog> blogList = blogMapper.findBlogList(pageUtil);
+                List<BlogListVO> blogListVOS = getBlogListVOsByBlogs(blogList);
+                int total = blogMapper.getTotalBlogs(pageUtil);
+                PageResult pageResult = new PageResult(blogListVOS, total, pageUtil.getLimit(), pageUtil.getPage());
+                return pageResult;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public PageResult getBlogsPageByTag(String tagName, Integer page) {
+        if (PatternUtil.validKeyword(tagName)) {
+            BlogTag tag = tagMapper.selectByTagName(tagName);
+            if (tag != null && page > 0) {
+                Map param = new HashMap();
+                param.put("page", page);
+                param.put("limit", 9);
+                param.put("tagId", tag.getTagId());
+                PageQueryUtil pageUtil = new PageQueryUtil(param);
+                List<Blog> blogList = blogMapper.getBlogsPageByTagId(pageUtil);
+                List<BlogListVO> blogListVOS = getBlogListVOsByBlogs(blogList);
+                int total = blogMapper.getTotalBlogsByTagId(pageUtil);
+                PageResult pageResult = new PageResult(blogListVOS, total, pageUtil.getLimit(), pageUtil.getPage());
+                return pageResult;
+            }
+        }
+        return null;
+    }
 
 }

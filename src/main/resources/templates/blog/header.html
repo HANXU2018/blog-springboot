@@ -25,6 +25,7 @@
                     <i class="fa fa-bars"></i>
                 </a>
             </div>
+
             <nav class="pull-right clean-nav">
                 <div class="collapse navbar-collapse">
                     <ul class="nav nav-pills navbar-nav">
@@ -50,9 +51,9 @@
                 <th:block th:text="${pageName}"></th:block>
             </div>
             <div class="clean-searchbox">
-                <form method="get" accept-charset="utf-8">
+                <form method="get" onsubmit="return false;" accept-charset="utf-8">
                     <input class="searchfield" id="searchbox" type="text" placeholder="  搜索">
-                    <button class="searchbutton" id="searchbutton">
+                    <button class="searchbutton" id="searchbutton" onclick="search()">
                         <i class="fa fa-search"></i>
                     </button>
                 </form>

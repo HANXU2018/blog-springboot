@@ -2,9 +2,10 @@ package com.lou.springboot.dao;
 
 import com.lou.springboot.entity.BlogLink;
 import com.lou.springboot.utils.PageQueryUtil;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public interface BlogLinkMapper {
     int deleteByPrimaryKey(Integer linkId);
 

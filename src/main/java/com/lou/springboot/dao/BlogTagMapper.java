@@ -4,10 +4,11 @@ import com.lou.springboot.entity.BlogTag;
 import com.lou.springboot.entity.BlogTagCount;
 import com.lou.springboot.utils.PageQueryUtil;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Mapper
+@Component
 public interface BlogTagMapper {
     int deleteByPrimaryKey(Integer tagId);
 

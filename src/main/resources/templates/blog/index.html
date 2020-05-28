@@ -19,12 +19,11 @@
                                         </h3>
                                     </a>
                                     <div class="blog-category">
-                                        <a>
+                                        <a th:href="@{'/category/' + ${blog.blogCategoryName}}"><!-- 分类搜索链接 -->
                                             <div class="blog-category-icon">
                                                 <img th:src="@{${blog.blogCategoryIcon}}" alt="">
                                             </div>
-                                            <div class="blog-category" th:utext="${blog.blogCategoryName}">
-                                            </div>
+                                            <div class="blog-category" th:utext="${blog.blogCategoryName}"></div>
                                         </a>
                                     </div>
                                 </header>
@@ -108,10 +107,9 @@
                         <ul class="tags">
                             <th:block th:if="${null != hotTags}">
                                 <th:block th:each="hotTag : ${hotTags}">
-                                    <li>
-                                        <a>
-                                            <th:block th:text="${hotTag.tagName}+'('+${hotTag.tagCount}+')'"></th:block>
-                                        </a>
+                                    <li><a th:href="@{'/tag/' + ${hotTag.tagName}}"><!-- 标签搜索链接 -->
+                                        <th:block th:text="${hotTag.tagName}+'('+${hotTag.tagCount}+')'"></th:block>
+                                    </a>
                                     </li>
                                 </th:block>
                             </th:block>
@@ -144,5 +142,8 @@
 <script th:src="@{/blog/js/jquery.min.js}"></script>
 <script th:src="@{/blog/js/bootstrap.min.js}"></script>
 <script th:src="@{/blog/js/modernizr.js}"></script>
+
+<script th:src="@{/blog/js/search.js}"></script>
+
 </body>
 </html>
