@@ -12,11 +12,9 @@
                         <div class="col-md-6 col-sm-6 blog-main-card">
                             <article class="blog-summary">
                                 <header>
-                                    <a>
+                                    <a th:href="@{'/blog/' + ${blog.blogId}}">
                                         <img th:src="@{${blog.blogCoverImage}}" alt="">
-                                        <h3>
-                                            <th:block th:text="${blog.blogTitle}"></th:block>
-                                        </h3>
+                                        <h3><th:block th:text="${blog.blogTitle}"></th:block></h3>
                                     </a>
                                     <div class="blog-category">
                                         <a th:href="@{'/category/' + ${blog.blogCategoryName}}"><!-- 分类搜索链接 -->
@@ -74,9 +72,11 @@
                         <ul class="clean-list">
                             <th:block th:if="${null != hotBlogs}">
                                 <th:block th:each="hotBlog : ${hotBlogs}">
-                                    <li><a>
-                                        <th:block th:text="${hotBlog.blogTitle}"></th:block>
-                                    </a></li>
+                                    <li>
+                                        <a th:href="@{'/blog/' + ${hotBlog.blogId}}">
+                                            <th:block th:text="${hotBlog.blogTitle}"></th:block>
+                                        </a>
+                                    </li>
                                 </th:block>
                             </th:block>
                         </ul>
@@ -90,9 +90,11 @@
                         <ul class="clean-list">
                             <th:block th:if="${null != newBlogs}">
                                 <th:block th:each="newBlog : ${newBlogs}">
-                                    <li><a>
-                                        <th:block th:text="${newBlog.blogTitle}"></th:block>
-                                    </a></li>
+                                    <li>
+                                        <a th:href="@{'/blog/' + ${newBlog.blogId}}">
+                                            <th:block th:text="${newBlog.blogTitle}"></th:block>
+                                        </a>
+                                    </li>
                                 </th:block>
                             </th:block>
                         </ul>

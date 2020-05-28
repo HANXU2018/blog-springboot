@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>详情页</title>
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" th:href="@{/blog/css/bootstrap.min.css}">
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" th:href="@{/blog/css/font-awesome/css/font-awesome.min.css}">
+    <!-- Styles -->
+    <link rel="stylesheet" th:href="@{/blog/css/style.css}" id="theme-styles">
+    <!--[if lt IE 9]>
+    <script th:src="@{/blog/js/respond.js}"></script>
+    <![endif]-->
+</head>
+<body>
+<header>
+    <div class="widewrapper masthead">
+        <div class="container">
+            <a th:href="@{/index}" id="logo">
+                <img th:src="@{/blog/img/logo.png}" class="logo-img" alt="my personal blog">
+            </a>
+            <div id="mobile-nav-toggle" class="pull-right">
+                <a href="#" data-toggle="collapse" data-target=".clean-nav .navbar-collapse">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+            <nav class="pull-right clean-nav">
+                <div class="collapse navbar-collapse">
+                    <ul class="nav nav-pills navbar-nav">
+                        <li>
+                            <a th:href="@{/index}">主页</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/link}">友链</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/about}">关于</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/ZHENFENG13">GitHub</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="widewrapper subheader">
+        <div class="container">
+            <div class="clean-breadcrumb">
+                <img th:src="@{${blogDetailVO.blogCategoryIcon}}" style=" margin-top: -4px;height: 16px;width: 16px;"
+                     alt="my personal blog">
+                <a href="#">&nbsp;<th:block th:text="${blogDetailVO.blogCategoryName}"></th:block>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="widewrapper main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 blog-main">
+                <article class="blog-post">
+                    <div class="body" id="blog-content">
+                        <h1 th:text="${blogDetailVO.blogTitle}"></h1>
+                        <div class="meta">
+                            <i class="fa fa-calendar"></i>
+                            <th:block th:text="${#dates.format(blogDetailVO.createTime, 'yyyy-MM-dd')}"></th:block>
+                            <span class="separator">&#x2F;</span>
+                            <i class="fa fa-comments"></i><span class="data"><a
+                                href="#comments"><th:block
+                                th:text="${blogDetailVO.commentCount}"></th:block>条评论</a></span>
+                            <span class="separator">&#x2F;</span>
+                            <i class="fa fa-street-view"></i>
+                            <th:block th:text="${blogDetailVO.blogViews}"></th:block>
+                            浏览
+                        </div>
+                        <div class="meta">
+                            <p class="post-tags">
+                                <th:block th:each="tag : ${blogDetailVO.blogTags}">
+                                    <a th:href="@{'/tag/' + ${tag}}">
+                                        <th:block th:text="${tag}"></th:block>
+                                    </a>
+                                </th:block>
+                            </p>
+                        </div>
+                        <th:block th:utext="${blogDetailVO.blogContent}"/>
+                    </div>
+                </article>
+                <aside class="blog-rights clearfix">
+                    <p>本站文章除注明转载/出处外，皆为作者原创，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</p>
+                </aside>
+                <p class="back-top" id="back-top" style="display:none"><a href="#top"><span></span></a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 引入页脚footer-fragment -->
+<footer th:replace="blog/footer::footer-fragment"></footer>
+<script th:src="@{/blog/js/jquery.min.js}"></script>
+<script th:src="@{/blog/js/bootstrap.min.js}"></script>
+<script th:src="@{/blog/js/modernizr.js}"></script>
+<!-- highlight -->
+<link rel="stylesheet" th:href="@{/blog/js/highlight/styles/github.css}">
+
+<script th:src="@{/blog/js/highlight/highlight.pack.js}"></script>
+<script type="text/javascript">
+    $(function () {
+        // 代码高亮
+        $('pre code').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(function() {
+        $("#back-top").hide();
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 300) {
+                $('#back-top').fadeIn();
+            } else {
+                $('#back-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-top a').click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+</script>
+
+<!-- dictionary -->
+<link rel="stylesheet" th:href="@{/blog/js/dictionary/dictionary.css}">
+
+<script th:src="@{/blog/js/dictionary/dictionary.js}"></script>
+<script type="text/javascript">
+    // 创建博客目录
+    createBlogDirectory("blog-content", "h1", "h2", 20);
+</script>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.lou.springboot.controller.blog;
 
+import com.lou.springboot.controller.vo.BlogDetailVO;
 import com.lou.springboot.service.BlogService;
 import com.lou.springboot.service.TagService;
 import com.lou.springboot.utils.PageResult;
@@ -123,6 +124,21 @@ public class MyBlogController {
         request.setAttribute("pageUrl", "tag");
         request.setAttribute("keyword", tagName);
         return "blog/list";
+    }
+
+    /**
+     * 详情页
+     *
+     * @return
+     */
+    @GetMapping("/blog/{blogId}")
+    public String detail(HttpServletRequest request, @PathVariable("blogId") Long blogId) {
+        BlogDetailVO blogDetailVO = blogService.getBlogDetail(blogId);
+        if (blogDetailVO != null) {
+            request.setAttribute("blogDetailVO", blogDetailVO);
+        }
+        request.setAttribute("pageName", "详情");
+        return "blog/detail";
     }
 
 }

@@ -1,5 +1,6 @@
 package com.lou.springboot.service;
 
+import com.lou.springboot.controller.vo.BlogDetailVO;
 import com.lou.springboot.controller.vo.BlogListVO;
 import com.lou.springboot.controller.vo.SimpleBlogListVO;
 import com.lou.springboot.entity.Blog;
@@ -41,4 +42,12 @@ public interface BlogService {
     public PageResult getBlogsPageByCategory(String categoryName, int page);
 
     PageResult getBlogsPageByTag(String tagName, Integer page);
+
+    /**
+     * 文章详情获取
+     *
+     * @param blogId
+     * @return
+     */
+    BlogDetailVO getBlogDetail(Long blogId);
 }
