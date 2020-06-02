@@ -2,7 +2,6 @@ package com.lou.springboot.controller.admin;
 
 import com.lou.springboot.common.Result;
 import com.lou.springboot.common.ResultGenerator;
-import com.lou.springboot.controller.vo.BlogDetailVO;
 import com.lou.springboot.service.CommentService;
 import com.lou.springboot.utils.PageQueryUtil;
 import org.springframework.stereotype.Controller;
@@ -16,9 +15,14 @@ import java.util.Map;
 @Controller
 @RequestMapping("/admin")
 public class CommentController {
-
     @Resource
-    private CommentService commentService;
+    CommentService commentService;
+
+    @GetMapping("/comments")
+    public String list(HttpServletRequest request) {
+        request.setAttribute("path", "comments");
+        return "admin/comment";
+    }
 
     /**
      * 评论列表
@@ -59,7 +63,6 @@ public class CommentController {
             return ResultGenerator.genFailResult("回复失败");
         }
     }
-
     @PostMapping("/comments/delete")
     @ResponseBody
     public Result delete(@RequestBody Integer[] ids) {
@@ -72,12 +75,4 @@ public class CommentController {
             return ResultGenerator.genFailResult("刪除失败");
         }
     }
-
-    @GetMapping("/comments")
-    public String list(HttpServletRequest request) {
-        request.setAttribute("path", "comments");
-        return "admin/comment";
-    }
-
-
 }

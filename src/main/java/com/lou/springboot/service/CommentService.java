@@ -1,6 +1,5 @@
 package com.lou.springboot.service;
 
-import com.lou.springboot.entity.BlogComment;
 import com.lou.springboot.utils.PageQueryUtil;
 import com.lou.springboot.utils.PageResult;
 
@@ -37,14 +36,4 @@ public interface CommentService {
      * @return
      */
     Boolean deleteBatch(Integer[] ids);
-
-    /**
-     * 添加评论
-     *
-     * @param blogComment
-     * @return
-     */
-    Boolean addComment(BlogComment blogComment);
-
-    public PageResult getCommentPageByBlogIdAndPageNum(Long blogId, int page);
 }
