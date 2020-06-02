@@ -175,21 +175,7 @@
     where comment_id = #{commentId,jdbcType=BIGINT}
   </update>
 
-    <select id="findBlogCommentList" parameterType="Map" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from tb_blog_comment
-        where is_deleted=0
-        order by comment_id desc
-        <if test="start!=null and limit!=null">
-            limit #{start},#{limit}
-        </if>
-    </select>
 
-    <select id="getTotalBlogComments" parameterType="Map" resultType="int">
-        select count(*) from tb_blog_comment
-        where is_deleted=0
-    </select>
 
     <update id="checkDone">
         update tb_blog_comment
@@ -207,4 +193,32 @@
             #{id}
         </foreach>
     </update>
+
+    <select id="findBlogCommentList" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_blog_comment
+        where is_deleted=0
+        <if test="blogId!=null">
+            AND blog_id = #{blogId}
+        </if>
+        <if test="commentStatus!=null">
+            AND comment_status = #{commentStatus}
+        </if>
+        order by comment_id desc
+        <if test="start!=null and limit!=null">
+            limit #{start},#{limit}
+        </if>
+    </select>
+
+    <select id="getTotalBlogComments" parameterType="Map" resultType="int">
+        select count(*) from tb_blog_comment
+        where is_deleted=0
+        <if test="blogId!=null">
+            AND blog_id = #{blogId}
+        </if>
+        <if test="commentStatus!=null">
+            AND comment_status = #{commentStatus}
+        </if>
+    </select>
 </mapper>
