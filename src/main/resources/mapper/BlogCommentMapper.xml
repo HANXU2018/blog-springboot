@@ -180,7 +180,7 @@
     <update id="checkDone">
         update tb_blog_comment
         set comment_status=1 where comment_id in
-        <foreach item="id" collection="array" open="(" separator="," close=")">
+        <foreach close=")" collection="array" item="id" open="(" separator=",">
             #{id}
         </foreach>
         and comment_status = 0
@@ -189,14 +189,14 @@
     <update id="deleteBatch">
         update tb_blog_comment
         set is_deleted=1 where comment_id in
-        <foreach item="id" collection="array" open="(" separator="," close=")">
+        <foreach close=")" collection="array" item="id" open="(" separator=",">
             #{id}
         </foreach>
     </update>
 
     <select id="findBlogCommentList" parameterType="Map" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         from tb_blog_comment
         where is_deleted=0
         <if test="blogId!=null">

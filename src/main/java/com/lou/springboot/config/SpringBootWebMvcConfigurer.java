@@ -17,6 +17,8 @@ public class SpringBootWebMvcConfigurer implements WebMvcConfigurer {
         //file:///C:/Users/hx/Desktop/tomcatstudy/1.png
         registry.addResourceHandler("/files/**").addResourceLocations("file:C:/Users/hx/Desktop/tomcatstudy/");
         registry.addResourceHandler("/upload/**").addResourceLocations("file:C:/Users/hx/Desktop/tomcatstudy/");
+//        registry.addResourceHandler("/files/**").addResourceLocations("file:/www/wwwroot/blog.hanxu51.com/file/");
+//        registry.addResourceHandler("/upload/**").addResourceLocations("file:/www/wwwroot/blog.hanxu51.com/file/");
     }
     public void addInterceptors(InterceptorRegistry registry) {
         // 添加一个拦截器，拦截以/admin为前缀的url路径

@@ -22,7 +22,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Resource
     private AdminUserMapper adminUserMapper;
 
-    @Autowired
+    @Resource
     private AdminUserDao adminUserDao;
 
 
