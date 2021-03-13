@@ -12,12 +12,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-/**
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link http:13blog.site
- */
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ApplicationTests {
