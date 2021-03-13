@@ -19,8 +19,8 @@
         </commentGenerator>
         <!--数据库地址及登陆账号密码 改成你自己的配置-->
         <jdbcConnection
-                driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://localhost:3306/lou_springboot"
+                driverClass="com.mysql.cj.jdbc.Driver"
+                connectionURL="jdbc:mysql://ubuntu.hanxu51.cn:3306/my_blog_db"
                 userId="root"
                 password="123456">
         </jdbcConnection>
