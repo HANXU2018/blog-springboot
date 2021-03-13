@@ -1,3 +1,10 @@
+## docker部署
+1. 端口映射8989
+2. 上传图片挂载 /home/ubuntu/blog
+3. 连接MySQL8.0 mysql-test
+'''
+docker run -p 8989:8989 -v /home/ubuntu/blog:/www/wwwroot/blog.hanxu51.cn/file/ --name blog -d --link mysql-test:mysql8 docker/springboot-demo:latest
+'''
 1.1.1 问题的提出
        高效率的完成博客博文内容的管理，开发一个具有高效率和有意义的博客文章管理系统。
 1.1.2 本课题的意义
