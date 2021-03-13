@@ -5,6 +5,59 @@
 '''
 docker run -p 8989:8989 -v /home/ubuntu/blog:/www/wwwroot/blog.hanxu51.cn/file/ --name blog -d --link mysql-test:mysql8 docker/springboot-demo:latest
 '''
+
+## nginx 反向代理
+'''
+ #我的博客网站，nginx反向代理
+server {
+        listen       80;
+        charset     utf-8;
+        server_name  blog.hanxu51.cn;
+        location / {
+            proxy_redirect off;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_pass http://blog.hanxu51.cn:8989;
+        }
+}
+
+
+server {
+    listen       80;
+    listen  [::]:80;
+    server_name  localhost;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+
+    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+
+      location /blog {
+            proxy_set_header Host $host;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_pass http://127.0.0.1:8989;
+        }
+
+}
+
+	
+
+
+'''
+
 1.1.1 问题的提出
        高效率的完成博客博文内容的管理，开发一个具有高效率和有意义的博客文章管理系统。
 1.1.2 本课题的意义
